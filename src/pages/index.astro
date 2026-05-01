@@ -1,17 +1,643 @@
 ---
+const WA_URL  = "https://wa.me/543834944727?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20DevHub%20Turnos";
+const APP_URL = "https://app.turnos.devhub.com.ar";
+const SITE    = "https://turnos.devhub.com.ar";
 
+const demos = [
+  { nombre: "Detailing / Lavadero",  url: "https://demo-detailing-cta.vercel.app/", desc: "Landing + reserva integrada para negocios de detailing automotriz.", live: true  },
+  { nombre: "Barbería / Peluquería", url: "#",                                       desc: "Turnos para barberías con servicios y horarios por estilista.",      live: false },
+  { nombre: "Estética / Spa",        url: "#",                                       desc: "Agenda online para centros de estética, masajes y tratamientos.",    live: false },
+  { nombre: "Médico / Salud",        url: "#",                                       desc: "Turnos médicos con múltiples profesionales y especialidades.",        live: false },
+];
+
+const features = [
+  { titulo: "Reservas 24/7",           desc: "Tus clientes reservan cuando quieren, sin llamadas ni mensajes. El sistema gestiona la disponibilidad automáticamente." },
+  { titulo: "Notificaciones WhatsApp", desc: "Recibís un mensaje automático al instante cada vez que alguien reserva. Tu cliente también recibe la confirmación." },
+  { titulo: "Panel de administración", desc: "Confirmá, cancelá y gestioná todos tus turnos desde un solo lugar. Diseñado para ser simple y rápido." },
+  { titulo: "Horarios configurables",  desc: "Definís tus días y franjas horarias. El sistema calcula los slots disponibles automáticamente." },
+  { titulo: "Link personalizado",      desc: "Cada negocio tiene su URL propia. La compartís por Instagram, WhatsApp o en tu sitio web." },
+  { titulo: "Landing page incluida",   desc: "Creamos el sitio web de tu negocio integrado al sistema de turnos. Todo en un solo lugar." },
+];
+
+const faqs = [
+  { q: "¿Necesito saber de tecnología para usarlo?",     a: "No. El sistema está diseñado para ser simple desde el primer día. Si podés usar WhatsApp, podés usar DevHub Turnos." },
+  { q: "¿Cómo recibo los pagos por los servicios?",      a: "DevHub Turnos gestiona los turnos. Los pagos los cobrás como siempre — en efectivo, transferencia o el método que uses." },
+  { q: "¿Puedo cancelar cuando quiero?",                 a: "Sí. Sin contratos ni permanencia. Cancelás cuando querés desde el panel o por WhatsApp." },
+  { q: "¿Qué pasa cuando vence el trial de 14 días?",    a: "Te avisamos antes del vencimiento. Si no contratás el plan Pro, el sistema se pausa pero tus datos no se borran." },
+  { q: "¿Funciona para negocios con varios empleados?",  a: "Sí. En el plan Pro podés agregar usuarios ilimitados. Cada uno puede gestionar los turnos desde su cuenta." },
+  { q: "¿Puedo tener mi propio dominio?",                a: "Sí, en el plan Enterprise configuramos tu dominio personalizado. En Pro tenés una URL del tipo reservas.devhub.com.ar/tu-negocio." },
+];
 ---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="DevHub Turnos — Sistema de turnos online para negocios. Reservas 24/7, notificaciones por WhatsApp y panel de administración. Probá gratis 14 días."/>
+  <meta property="og:title" content="DevHub Turnos — Turnos online para tu negocio"/>
+  <meta property="og:description" content="Tus clientes reservan solos. Vos gestionás todo desde un panel simple. Probá gratis 14 días."/>
+  <meta property="og:image" content={`${SITE}/dashboard.png`}/>
+  <meta property="og:url" content={SITE}/>
+  <meta property="og:type" content="website"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <link rel="icon" type="image/png" href="/devhub-turnos.png"/>
+  <title>DevHub Turnos — Sistema de turnos online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+</head>
+<body>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="/" class="nav-logo"><img src="/devhub-turnos.png" alt="DevHub Turnos" class="logo"/></a>
+    <div class="nav-links">
+      <a href="#funciones">Funciones</a>
+      <a href="#demos">Demos</a>
+      <a href="#planes">Planes</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#faq">FAQ</a>
+      <a href={WA_URL} target="_blank" class="nwa">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href={APP_URL} target="_blank" class="ncta">Probá gratis</a>
+    </div>
+    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mmenu" id="mm">
+  <a href="#funciones" class="ml">Funciones</a>
+  <a href="#demos" class="ml">Demos</a>
+  <a href="#planes" class="ml">Planes</a>
+  <a href="#nosotros" class="ml">Nosotros</a>
+  <a href="#faq" class="ml">FAQ</a>
+  <a href={WA_URL} target="_blank" class="ml">WhatsApp</a>
+  <a href={APP_URL} target="_blank" class="mcta">Probá gratis — 14 días</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"><div class="hgrid"></div><div class="orb o1"></div><div class="orb o2"></div></div>
+  <div class="C hero-wrap">
+    <div class="hero-l">
+      <div class="badge"><span class="bdot"></span>Sistema de turnos para negocios · Argentina</div>
+      <h1 class="h1">Tus clientes<br/>reservan solos.<br/><em>Vos crecés.</em></h1>
+      <p class="hero-p">Olvidate de los mensajes preguntando horarios. Con DevHub Turnos tus clientes reservan 24/7 y vos recibís la notificación al instante.</p>
+      <div class="hero-btns">
+        <a href={APP_URL} target="_blank" class="bp bl">Empezar gratis — 14 días <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#demos" class="bg">Ver demos</a>
+      </div>
+      <div class="checks">
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Sin tarjeta de crédito</span>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Configuración en minutos</span>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Soporte en español</span>
+      </div>
+    </div>
+
+    <!-- Screenshot real del sistema -->
+    <div class="hero-r">
+      <div class="screenshot-wrap">
+        <div class="screenshot-bar">
+          <div class="sdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <span class="surl">app.turnos.devhub.com.ar</span>
+        </div>
+        <div class="screenshot-img">
+          <img src="/dashboard.png" alt="Panel de administración DevHub Turnos" class="ss-img"/>
+        </div>
+        <!-- Notif flotante -->
+        <div class="ss-notif">
+          <div class="nicon"><svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg></div>
+          <div><span class="ntit">Nueva reserva recibida</span><span class="nbod">Lucas M. · Detailing Pro · Hoy 09:00 hs</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RUBROS -->
+<section class="rubros">
+  <div class="C">
+    <p class="rl">Funciona para cualquier negocio con turnos</p>
+    <div class="rlist">
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3 3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/><path d="M18 3a3 3 0 0 1 3 3v3a3 3 0 0 1-3 3 3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/><path d="M6 21a3 3 0 0 1 0-6"/><path d="M18 21a3 3 0 0 0 0-6"/><line x1="12" y1="12" x2="12" y2="21"/></svg>Barberías</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>Detailing</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Estética</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Médicos</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="5" r="2"/><path d="M8 22v-5l-3-5 3-3 4 3 4-3 3 3-3 5v5"/></svg>Pilates / Yoga</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>Veterinarias</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5.5 8.5 9 12l-3.5 3.5L2 12l3.5-3.5z"/><path d="m12 2-3.5 3.5 3.5 3.5 3.5-3.5z"/><path d="M18.5 8.5 15 12l3.5 3.5L22 12l-3.5-3.5z"/><path d="m12 22-3.5-3.5 3.5-3.5 3.5 3.5z"/></svg>Peluquerías</div>
+      <div class="rc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 0 1 4 4c0 1.5-.5 2.5-1 3.5-.5 1-1 2-1 3.5 0 2 0 4-2 4s-2-2-2-4c0-1.5-.5-2.5-1-3.5C8.5 8.5 8 7.5 8 6a4 4 0 0 1 4-4z"/></svg>Odontología</div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONES -->
+<section id="funciones" class="sec">
+  <div class="C">
+    <div class="sh center">
+      <span class="stag">Funcionalidades</span>
+      <h2 class="sh2">Todo lo que necesitás<br/><span class="acc">en un solo sistema</span></h2>
+      <p class="sdesc">Sin apps extra. Sin complicaciones. DevHub Turnos centraliza la gestión de turnos de forma profesional.</p>
+    </div>
+    <div class="fgrid">
+      {features.map((f, i) => {
+        const icons = [
+          `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+          `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+          `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>`,
+          `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+          `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`,
+          `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+        ];
+        return (
+          <div class="fc">
+            <div class="ficon"><Fragment set:html={icons[i]}/></div>
+            <h3 class="ftit">{f.titulo}</h3>
+            <p class="fdesc">{f.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- DEMOS -->
+<section id="demos" class="sec dark">
+  <div class="C">
+    <div class="sh center">
+      <span class="stag">Demos en vivo</span>
+      <h2 class="sh2">Mirá cómo funciona<br/><span class="acc">en cada rubro</span></h2>
+      <p class="sdesc">Cada demo es un sitio real con reservas funcionando. Hacé click para verlo en acción.</p>
+    </div>
+    <div class="dgrid">
+      {demos.map(d => (
+        <div class={`dc ${!d.live ? "dsoon" : ""}`}>
+          <div class="dhead">
+            <div class="dprev"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+            <span class={`dbadge ${d.live ? "dlive" : "dwait"}`}>{d.live && <span class="ldot"></span>}{d.live ? "Disponible" : "Próximamente"}</span>
+          </div>
+          <h3 class="dnom">{d.nombre}</h3>
+          <p class="ddesc">{d.desc}</p>
+          <div class="dfoot">
+            {d.live
+              ? <a href={d.url} target="_blank" class="dcta">Ver demo en vivo <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              : <a href={`${WA_URL}&text=Hola!%20Quiero%20que%20me%20avisen%20cuando%20esté%20el%20demo%20de%20${encodeURIComponent(d.nombre)}`} target="_blank" class="davise">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                  Avisame cuando esté
+                </a>
+            }
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="dcta-row">
+      <p>¿Tenés un rubro diferente? Consultanos y armamos tu demo.</p>
+      <a href={WA_URL} target="_blank" class="bo">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section id="planes" class="sec">
+  <div class="C">
+    <div class="sh center">
+      <span class="stag">Precios</span>
+      <h2 class="sh2">Simple y transparente</h2>
+      <p class="sdesc">Sin costos ocultos. Sin comisiones por reserva. Un precio fijo por mes.</p>
+    </div>
+
+    <!-- Toggle mensual/anual -->
+    <div class="toggle-wrap">
+      <span class="tl" id="tlabel-m">Mensual</span>
+      <button class="toggle" id="billing-toggle" aria-label="Cambiar facturación">
+        <span class="toggle-thumb"></span>
+      </button>
+      <span class="tl" id="tlabel-a">Anual <span class="badge-off">20% OFF</span></span>
+    </div>
+
+    <div class="pgrid">
+      <!-- Trial -->
+      <div class="plan">
+        <h3 class="pn">Trial</h3>
+        <p class="pd">Probá todo sin compromiso.</p>
+        <div class="pprice"><span class="pv">Gratis</span><span class="pu">/14 días</span></div>
+        <ul class="plist">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Acceso completo al sistema</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Sin tarjeta de crédito</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Configuración en minutos</li>
+        </ul>
+        <a href={APP_URL} target="_blank" class="bo">Empezar gratis</a>
+      </div>
+
+      <!-- Pro -->
+      <div class="plan ppro">
+        <div class="ppop">MÁS POPULAR</div>
+        <h3 class="pn">Pro</h3>
+        <p class="pd">Para negocios que quieren crecer.</p>
+        <div class="pprice">
+          <span class="pv" id="pro-price">$35.000</span>
+          <span class="pu" id="pro-dur">/mes</span>
+        </div>
+        <p class="pahorro" id="pro-ahorro" style="display:none">Ahorrás $84.000 al año</p>
+        <ul class="plist">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Turnos y servicios ilimitados</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Usuarios ilimitados</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Notificaciones WhatsApp</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Panel de administración</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Link de reservas propio</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Soporte prioritario</li>
+        </ul>
+        <a href={APP_URL} target="_blank" class="bp">Empezar ahora</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="plan">
+        <h3 class="pn">Enterprise</h3>
+        <p class="pd">Para cadenas y franquicias.</p>
+        <div class="pprice"><span class="pv">A consultar</span><span class="pu">/multi-sucursal</span></div>
+        <ul class="plist">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Todo lo del Pro</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Múltiples sucursales</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dominio personalizado</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Landing page incluida</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Onboarding dedicado</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Soporte 24/7</li>
+        </ul>
+        <a href={WA_URL} target="_blank" class="bo">Consultar</a>
+      </div>
+    </div>
+    <p class="pnota">Precios en pesos argentinos · Pagá por transferencia · Sin contratos</p>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="sec dark">
+  <div class="C">
+    <div class="nos-grid">
+      <div class="nl">
+        <span class="stag">Quiénes somos</span>
+        <h2 class="sh2">Desarrollado en<br/><span class="acc">Catamarca, Argentina</span></h2>
+        <p class="np">Somos un equipo de desarrollo de software radicado en Catamarca. Creamos DevHub Turnos porque vimos de cerca cómo negocios locales perdían clientes por no tener un sistema de reservas simple y profesional.</p>
+        <p class="np">Nuestro objetivo es democratizar la tecnología para que cualquier negocio pueda ofrecer una experiencia moderna a sus clientes.</p>
+        <div class="valores">
+          <div class="val"><div class="vi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><p class="vt">Confianza</p><p class="vd">Tus datos y los de tus clientes siempre protegidos.</p></div></div>
+          <div class="val"><div class="vi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><p class="vt">Simplicidad</p><p class="vd">Sin curvas de aprendizaje. Simple desde el primer día.</p></div></div>
+          <div class="val"><div class="vi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><p class="vt">Soporte local</p><p class="vd">Respondemos en español, rápido y sin tickets.</p></div></div>
+        </div>
+      </div>
+      <div class="nr">
+        <div class="ncard">
+          <div class="nstat"><span class="nn">14</span><span class="nl2">días de prueba gratuita</span></div>
+          <div class="ndiv"></div>
+          <div class="nstat"><span class="nn">24/7</span><span class="nl2">Reservas para tus clientes</span></div>
+          <div class="ndiv"></div>
+          <div class="nstat"><span class="nn">∞</span><span class="nl2">Turnos en el plan Pro</span></div>
+        </div>
+        <div class="ncontact">
+          <p class="nct">¿Querés hablar con nosotros?</p>
+          <p class="ncd">Respondemos en minutos por WhatsApp.</p>
+          <a href={WA_URL} target="_blank" class="bwa">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Hablar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="sec">
+  <div class="C">
+    <div class="sh center">
+      <span class="stag">Preguntas frecuentes</span>
+      <h2 class="sh2">Resolvemos tus dudas</h2>
+      <p class="sdesc">Si no encontrás lo que buscás, escribinos por WhatsApp.</p>
+    </div>
+    <div class="faq-grid">
+      {faqs.map(f => (
+        <div class="faq-item">
+          <div class="faq-q">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            {f.q}
+          </div>
+          <p class="faq-a">{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="ctaf">
+  <div class="ctabg"><div class="ctaorb"></div></div>
+  <div class="C ctain">
+    <img src="/devhub-turnos.png" alt="DevHub Turnos" class="ctalogo"/>
+    <h2 class="ctah">¿Listo para modernizar tu negocio?</h2>
+    <p class="ctap">Empezá hoy gratis. Sin tarjeta de crédito, sin compromiso.</p>
+    <div class="ctabtns">
+      <a href={APP_URL} target="_blank" class="bp bl">Crear cuenta gratis <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href={WA_URL} target="_blank" class="bwao">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer><div class="C fi"><img src="/devhub-turnos.png" alt="DevHub Turnos" class="flogo"/><p class="fc2">© 2026 DevHub Turnos · Catamarca, Argentina</p><div class="flinks"><a href={WA_URL} target="_blank">WhatsApp</a><a href="mailto:devhubturnos@gmail.com">Email</a></div></div></footer>
+
+<!-- WhatsApp flotante mobile -->
+<a href={WA_URL} target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+</body>
 </html>
+
+<script is:inline>
+  // Nav scroll
+  const nav=document.getElementById("nav");
+  window.addEventListener("scroll",()=>nav?.classList.toggle("sc",window.scrollY>40));
+
+  // Mobile menu
+  const hbg=document.getElementById("hbg"),mm=document.getElementById("mm");
+  hbg?.addEventListener("click",()=>{mm?.classList.toggle("op");hbg?.classList.toggle("act")});
+  document.querySelectorAll(".ml,.mcta").forEach(el=>el.addEventListener("click",()=>{mm?.classList.remove("op");hbg?.classList.remove("act")}));
+
+  // Scroll reveal
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.1});
+  document.querySelectorAll(".fc,.dc,.plan,.rc,.val,.faq-item").forEach(el=>{el.classList.add("rv");io.observe(el)});
+
+  // Toggle facturación mensual/anual
+  const toggle = document.getElementById("billing-toggle");
+  const proPrice = document.getElementById("pro-price");
+  const proDur = document.getElementById("pro-dur");
+  const proAhorro = document.getElementById("pro-ahorro");
+  const tlM = document.getElementById("tlabel-m");
+  const tlA = document.getElementById("tlabel-a");
+  let anual = false;
+
+  const PRECIO_MES = 35000;
+  const PRECIO_ANUAL = Math.round(PRECIO_MES * 12 * 0.8);
+  const PRECIO_ANUAL_MES = Math.round(PRECIO_MES * 0.8);
+
+  toggle?.addEventListener("click", () => {
+    anual = !anual;
+    toggle.classList.toggle("on", anual);
+    tlM.style.opacity = anual ? "0.4" : "1";
+    tlA.style.opacity = anual ? "1" : "0.4";
+    if (anual) {
+      proPrice.textContent = `$${PRECIO_ANUAL_MES.toLocaleString("es-AR")}`;
+      proDur.textContent = "/mes · facturado anual";
+      proAhorro.style.display = "block";
+    } else {
+      proPrice.textContent = `$${PRECIO_MES.toLocaleString("es-AR")}`;
+      proDur.textContent = "/mes";
+      proAhorro.style.display = "none";
+    }
+  });
+
+  // FAQ accordion
+  document.querySelectorAll(".faq-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--b:#2563eb;--bd:#1d4ed8;--bl:#3b82f6;--bdim:rgba(37,99,235,.1);--bk:#06060f;--s1:#0b0b18;--s2:#10101f;--s3:#16162a;--fg:#f0f0f8;--fg2:#8888aa;--fg3:#44445a;--H:'Syne',sans-serif;--B:'DM Sans',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--fg);font-family:var(--B);font-weight:300;line-height:1.65;overflow-x:hidden}
+.C{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.sc{background:rgba(6,6,15,.95);backdrop-filter:blur(18px);border-color:rgba(255,255,255,.05)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 2rem;height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{height:34px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:1.75rem}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--fg2);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--fg)}
+.nwa{display:flex!important;align-items:center;gap:5px;color:#16a34a!important}
+.ncta{background:var(--b)!important;color:#fff!important;padding:8px 20px!important;border-radius:8px!important;font-weight:600!important}
+.ncta:hover{background:var(--bd)!important}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hbg span{display:block;width:24px;height:2px;background:var(--fg);border-radius:2px;transition:all .3s}
+.hbg.act span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.act span:nth-child(2){opacity:0}
+.hbg.act span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mmenu{position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(6,6,15,.98);backdrop-filter:blur(20px);padding:1.5rem 2rem;display:flex;flex-direction:column;gap:1rem;border-bottom:1px solid rgba(255,255,255,.05);transform:translateY(-110%);opacity:0;transition:transform .3s,opacity .3s;pointer-events:none}
+.mmenu.op{transform:translateY(0);opacity:1;pointer-events:all}
+.ml{font-size:1rem;color:var(--fg2);text-decoration:none;padding:.5rem 0;border-bottom:1px solid rgba(255,255,255,.04);transition:color .2s}
+.ml:hover{color:var(--fg)}
+.mcta{display:inline-flex;align-items:center;justify-content:center;background:var(--b);color:#fff;padding:12px 24px;border-radius:8px;font-weight:600;text-decoration:none;margin-top:.5rem}
+
+/* BUTTONS */
+.bp{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;background:var(--b);color:#fff;font-size:.9375rem;font-weight:600;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s}
+.bp:hover{background:var(--bd);transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,99,235,.35)}
+.bl{padding:15px 36px;font-size:1rem}
+.bg{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;border:1px solid rgba(255,255,255,.12);color:var(--fg2);font-size:.9375rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s,background .2s}
+.bg:hover{border-color:var(--bl);color:var(--fg);background:var(--bdim)}
+.bo{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:10px;border:1px solid rgba(255,255,255,.12);color:var(--fg2);font-size:.875rem;font-weight:500;text-decoration:none;transition:all .2s}
+.bo:hover{border-color:var(--bl);color:var(--fg);background:var(--bdim)}
+.bwa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 24px;border-radius:10px;background:#16a34a;color:#fff;font-size:.9375rem;font-weight:600;text-decoration:none;transition:background .2s}
+.bwa:hover{background:#15803d}
+.bwao{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:10px;border:1px solid rgba(22,163,74,.3);color:#22c55e;font-size:.9375rem;font-weight:600;text-decoration:none;background:rgba(22,163,74,.06);transition:all .2s}
+.bwao:hover{background:rgba(22,163,74,.12);border-color:rgba(22,163,74,.5)}
+
+/* SECTION */
+.sec{padding:8rem 0}
+.sec.dark{background:var(--s1)}
+.sh{margin-bottom:4rem}
+.sh.center{text-align:center}
+.stag{display:inline-block;font-size:.6875rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--bl);margin-bottom:1rem}
+.sh2{font-family:var(--H);font-size:clamp(2rem,5vw,3.25rem);font-weight:800;line-height:1.12;color:var(--fg);margin-bottom:1rem}
+.sdesc{font-size:1.0625rem;color:var(--fg2);line-height:1.7;max-width:600px;margin:0 auto}
+.acc{color:var(--bl)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;padding:8rem 2rem 4rem}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,235,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,.035) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 80% at 30% 40%,black,transparent)}
+.orb{position:absolute;border-radius:50%;filter:blur(70px)}
+.o1{top:-10%;left:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(37,99,235,.12) 0%,transparent 65%)}
+.o2{bottom:-10%;right:5%;width:500px;height:500px;background:radial-gradient(circle,rgba(59,130,246,.07) 0%,transparent 65%)}
+.hero-wrap{position:relative;z-index:1;display:flex;align-items:center;gap:5rem}
+.hero-l{flex:1;max-width:560px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:.6875rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--bl);border:1px solid rgba(59,130,246,.25);padding:6px 14px;border-radius:99px;margin-bottom:1.75rem;animation:fu .6s ease both}
+.bdot{width:6px;height:6px;border-radius:50%;background:var(--bl);animation:pl 2s ease infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.3}}
+.h1{font-family:var(--H);font-size:clamp(2.5rem,5.5vw,4rem);font-weight:800;line-height:1.1;color:var(--fg);margin-bottom:1.5rem;animation:fu .6s .1s ease both}
+.h1 em{font-style:normal;color:var(--bl)}
+.hero-p{font-size:1.0625rem;color:var(--fg2);line-height:1.75;margin-bottom:2.5rem;animation:fu .6s .2s ease both}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;animation:fu .6s .3s ease both}
+.checks{display:flex;gap:1.5rem;flex-wrap:wrap;animation:fu .6s .4s ease both}
+.checks span{display:flex;align-items:center;gap:6px;font-size:.8125rem;color:var(--fg2)}
+.checks svg{color:var(--bl);flex-shrink:0}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* SCREENSHOT */
+.hero-r{flex:1;max-width:580px;animation:fu .8s .3s ease both}
+.screenshot-wrap{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(37,99,235,.25);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(37,99,235,.08)}
+.screenshot-bar{background:var(--s3);padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.sdots{display:flex;gap:6px}
+.dr{width:10px;height:10px;border-radius:50%;background:#ff5f57}
+.dy{width:10px;height:10px;border-radius:50%;background:#ffbd2e}
+.dg{width:10px;height:10px;border-radius:50%;background:#28c840}
+.surl{font-size:.6875rem;color:var(--fg3);font-family:monospace}
+.screenshot-img{background:var(--s2);line-height:0}
+.ss-img{width:100%;height:auto;display:block;max-height:380px;object-fit:cover;object-position:top}
+.ss-notif{position:absolute;bottom:12px;left:12px;right:12px;display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(6,6,15,.92);backdrop-filter:blur(10px);border:1px solid rgba(37,99,235,.2);border-radius:12px;animation:si 1s 1.5s ease both;opacity:0}
+@keyframes si{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.nicon{width:32px;height:32px;background:#16a34a;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ntit{display:block;font-size:.6875rem;font-weight:600;color:var(--fg)}
+.nbod{display:block;font-size:.625rem;color:var(--fg2)}
+
+/* RUBROS */
+.rubros{padding:2.5rem 0;background:var(--s1);border-top:1px solid rgba(37,99,235,.08);border-bottom:1px solid rgba(37,99,235,.08)}
+.rl{text-align:center;font-size:.6875rem;letter-spacing:.15em;text-transform:uppercase;color:var(--fg3);margin-bottom:1.25rem}
+.rlist{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem}
+.rc{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:99px;background:var(--s2);border:1px solid rgba(255,255,255,.06);font-size:.875rem;color:var(--fg2);transition:border-color .2s,color .2s;cursor:default}
+.rc:hover{border-color:var(--bl);color:var(--fg)}
+.rc svg{color:var(--bl)}
+
+/* FEATURES */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.fc{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:2rem;transition:border-color .25s,transform .25s}
+.fc:hover{border-color:rgba(37,99,235,.3);transform:translateY(-4px)}
+.ficon{width:44px;height:44px;background:var(--bdim);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;color:var(--bl)}
+.ftit{font-family:var(--H);font-size:1.0625rem;font-weight:700;color:var(--fg);margin-bottom:.625rem}
+.fdesc{font-size:.9375rem;color:var(--fg2);line-height:1.65}
+
+/* DEMOS */
+.dgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem}
+.dc{background:var(--s2);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:border-color .25s,transform .25s}
+.dc:hover:not(.dsoon){border-color:rgba(37,99,235,.35);transform:translateY(-4px)}
+.dsoon{opacity:.65}
+.dhead{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.dprev{width:50px;height:50px;background:var(--s3);border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.05);color:var(--fg3)}
+.dbadge{display:inline-flex;align-items:center;gap:5px;font-size:.5625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px}
+.dlive{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.dwait{background:var(--s3);color:var(--fg3);border:1px solid rgba(255,255,255,.06)}
+.ldot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pl 2s ease infinite}
+.dnom{font-family:var(--H);font-size:1rem;font-weight:700;color:var(--fg)}
+.ddesc{font-size:.8125rem;color:var(--fg2);line-height:1.55;flex:1}
+.dfoot{margin-top:auto}
+.dcta{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:600;color:var(--bl);text-decoration:none;padding:8px 16px;border-radius:8px;border:1px solid rgba(37,99,235,.25);background:var(--bdim);transition:all .2s}
+.dcta:hover{background:rgba(37,99,235,.18);border-color:rgba(37,99,235,.4)}
+.davise{display:inline-flex;align-items:center;gap:6px;font-size:.8125rem;font-weight:600;color:#22c55e;text-decoration:none;padding:8px 14px;border-radius:8px;border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.06);transition:all .2s}
+.davise:hover{background:rgba(34,197,94,.12)}
+.dcta-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.5rem 2rem;background:var(--s2);border-radius:14px;border:1px solid rgba(255,255,255,.06);flex-wrap:wrap}
+.dcta-row p{font-size:.9375rem;color:var(--fg2)}
+
+/* PLANES - TOGGLE */
+.toggle-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:3rem}
+.tl{font-size:.9375rem;font-weight:500;color:var(--fg2);transition:opacity .2s;display:flex;align-items:center;gap:8px}
+.badge-off{font-size:.625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(37,99,235,.15);color:var(--bl);border:1px solid rgba(37,99,235,.3);padding:3px 8px;border-radius:99px}
+.toggle{width:48px;height:26px;border-radius:99px;background:var(--s3);border:1px solid rgba(255,255,255,.1);cursor:pointer;position:relative;transition:background .25s}
+.toggle.on{background:var(--b);border-color:var(--b)}
+.toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.toggle.on .toggle-thumb{transform:translateX(22px)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
+.plan{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem;position:relative;transition:border-color .2s,transform .2s}
+.plan:hover{border-color:rgba(37,99,235,.3);transform:translateY(-4px)}
+.ppro{border-color:rgba(37,99,235,.35)!important;background:linear-gradient(145deg,#06061a 0%,var(--s1) 60%);box-shadow:0 0 0 1px rgba(37,99,235,.15)}
+.ppop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--b);color:#fff;font-size:.5625rem;font-weight:800;letter-spacing:.15em;padding:4px 14px;border-radius:99px;white-space:nowrap}
+.pn{font-family:var(--H);font-size:1.25rem;font-weight:700;color:var(--fg)}
+.pd{font-size:.875rem;color:var(--fg2)}
+.pprice{margin-top:1rem}
+.pv{font-family:var(--H);font-size:2.5rem;font-weight:800;color:var(--fg);transition:all .3s}
+.pu{font-size:.875rem;color:var(--fg3);margin-left:4px}
+.pahorro{font-size:.8125rem;color:#22c55e;margin-top:4px}
+.plist{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1}
+.plist li{display:flex;align-items:center;gap:9px;font-size:.9375rem;color:var(--fg2)}
+.plist li svg{color:var(--bl);flex-shrink:0}
+.pnota{text-align:center;font-size:.8125rem;color:var(--fg3)}
+
+/* NOSOTROS */
+.nos-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.np{font-size:.9375rem;color:var(--fg2);line-height:1.75;margin-bottom:1.25rem}
+.valores{display:flex;flex-direction:column;gap:1.5rem;margin-top:2rem}
+.val{display:flex;gap:1rem;align-items:flex-start}
+.vi{width:40px;height:40px;background:var(--bdim);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--bl);flex-shrink:0}
+.vt{font-size:.9375rem;font-weight:600;color:var(--fg);margin-bottom:3px}
+.vd{font-size:.8125rem;color:var(--fg2);line-height:1.5}
+.nr{display:flex;flex-direction:column;gap:1.5rem}
+.ncard{background:var(--s2);border:1px solid rgba(37,99,235,.15);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem}
+.nstat{text-align:center}
+.nn{display:block;font-family:var(--H);font-size:3rem;font-weight:800;color:var(--bl)}
+.nl2{font-size:.875rem;color:var(--fg2)}
+.ndiv{height:1px;background:rgba(255,255,255,.06)}
+.ncontact{background:var(--s2);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1rem}
+.nct{font-family:var(--H);font-size:1.0625rem;font-weight:700;color:var(--fg)}
+.ncd{font-size:.9375rem;color:var(--fg2)}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:900px;margin:0 auto}
+.faq-item{background:var(--s1);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:1.25rem 1.5rem;cursor:pointer;transition:border-color .2s}
+.faq-item:hover,.faq-item.open{border-color:rgba(37,99,235,.3)}
+.faq-q{display:flex;align-items:flex-start;gap:10px;font-size:.9375rem;font-weight:600;color:var(--fg);line-height:1.5}
+.faq-q svg{color:var(--bl);flex-shrink:0;margin-top:2px}
+.faq-a{font-size:.875rem;color:var(--fg2);line-height:1.65;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding-top:0}
+.faq-item.open .faq-a{max-height:200px;padding-top:.75rem}
+
+/* CTA FINAL */
+.ctaf{padding:8rem 0;position:relative;overflow:hidden;text-align:center;background:var(--s1);border-top:1px solid rgba(37,99,235,.1)}
+.ctabg{position:absolute;inset:0}
+.ctaorb{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.1) 0%,transparent 70%);filter:blur(60px)}
+.ctain{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.ctalogo{height:48px;width:auto;object-fit:contain}
+.ctah{font-family:var(--H);font-size:clamp(2rem,5vw,3.25rem);font-weight:800;color:var(--fg);line-height:1.2}
+.ctap{font-size:1.0625rem;color:var(--fg2)}
+.ctabtns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem}
+
+/* FOOTER */
+footer{padding:2rem 0;border-top:1px solid rgba(255,255,255,.05)}
+.fi{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.flogo{height:28px;width:auto;object-fit:contain}
+.fc2{font-size:.8125rem;color:var(--fg3)}
+.flinks{display:flex;gap:1.5rem}
+.flinks a{font-size:.8125rem;color:var(--fg3);text-decoration:none;transition:color .2s}
+.flinks a:hover{color:var(--fg)}
+
+/* WA FLOAT */
+.wa-float{display:none;position:fixed;bottom:24px;right:24px;z-index:200;width:52px;height:52px;background:#16a34a;border-radius:50%;align-items:center;justify-content:center;color:#fff;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .2s,background .2s}
+.wa-float:hover{background:#15803d;transform:scale(1.1)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .hero-wrap{flex-direction:column;padding-top:6rem}
+  .hero-l,.hero-r{max-width:100%}
+  .dgrid{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:repeat(2,1fr)}
+  .nos-grid{grid-template-columns:1fr;gap:3rem}
+  .faq-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hbg{display:flex}
+  .pgrid{grid-template-columns:1fr;max-width:420px;margin:0 auto 1.5rem}
+  .fgrid{grid-template-columns:1fr}
+  .dgrid{grid-template-columns:1fr}
+  .dcta-row{flex-direction:column;text-align:center}
+  .hero-btns{flex-direction:column}
+  .checks{flex-direction:column;gap:.5rem}
+  .ctabtns{flex-direction:column;align-items:center}
+  .wa-float{display:flex}
+}
+</style>
