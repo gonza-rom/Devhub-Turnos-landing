@@ -236,7 +236,6 @@ const faqs = [
 
       <!-- Pro -->
       <div class="plan ppro">
-        <div class="ppop">MÁS POPULAR</div>
         <h3 class="pn">Pro</h3>
         <p class="pd">Para negocios que quieren crecer.</p>
         <div class="pprice">
@@ -255,20 +254,39 @@ const faqs = [
         <a href={APP_URL} target="_blank" class="bp">Empezar ahora</a>
       </div>
 
-      <!-- Enterprise -->
-      <div class="plan">
-        <h3 class="pn">Enterprise</h3>
-        <p class="pd">Para cadenas y franquicias.</p>
-        <div class="pprice"><span class="pv">A consultar</span><span class="pu">/multi-sucursal</span></div>
+      <!-- Plan Landing + Turnos -->
+      <div class="plan" style="border-color:rgba(37,99,235,.25);background:linear-gradient(145deg,#06061a 0%,var(--s1) 60%);">
+        <div class="ppop">MÁS POPULAR</div>
+        <div>
+          <img src="/devhub-turnos.png" alt="DevHub Turnos" style="height:36px;width:auto;object-fit:contain;margin-bottom:1rem;display:block"/>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:1rem;flex-wrap:wrap">
+            <span style="font-size:.5625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:rgba(37,99,235,.12);color:#93c5fd;border:1px solid rgba(37,99,235,.25)">Gestión de turnos</span>
+            <a href="https://turnos.devhub.com.ar/" target="_blank" rel="noopener noreferrer"
+              style="font-size:.5625rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--s3);color:var(--fg3);border:1px solid rgba(255,255,255,.06);text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:color .2s,border-color .2s"
+              onmouseover="this.style.color='#93c5fd';this.style.borderColor='rgba(37,99,235,.3)'"
+              onmouseout="this.style.color='var(--fg3)';this.style.borderColor='rgba(255,255,255,.06)'">
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Ver demo
+            </a>
+          </div>
+        </div>
+        <h3 class="pn" style="color:#93c5fd">Landing + Turnos</h3>
+        <p class="pd">Ideal para profesionales y servicios que quieren presencia online y gestión de turnos.</p>
+        <div class="pprice">
+          <span class="pv">$50.000</span>
+          <span class="pu">/mes</span>
+        </div>
         <ul class="plist">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Todo lo del Pro</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Múltiples sucursales</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dominio personalizado</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Landing page incluida</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Onboarding dedicado</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Soporte 24/7</li>
+          {['Página web profesional', 'Servicios / Fotos / Ubicación', 'Botón WhatsApp', 'Sistema de turnos online', 'Panel administrador', 'Soporte y mantenimiento'].map(f => (
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              {f}
+            </li>
+          ))}
         </ul>
-        <a href={WA_URL} target="_blank" class="bo">Consultar</a>
+        <a href="https://wa.me/5493834944727" target="_blank" rel="noopener noreferrer" class="bp" style="justify-content:center">
+          Contratar plan
+        </a>
       </div>
     </div>
     <p class="pnota">Precios en pesos argentinos · Pagá por transferencia · Sin contratos</p>
@@ -351,7 +369,28 @@ const faqs = [
 </section>
 
 <!-- FOOTER -->
-<footer><div class="C fi"><img src="/devhub-turnos.png" alt="DevHub Turnos" class="flogo"/><p class="fc2">© 2026 DevHub Turnos · Catamarca, Argentina</p><div class="flinks"><a href={WA_URL} target="_blank">WhatsApp</a><a href="mailto:devhubturnos@gmail.com">Email</a></div></div></footer>
+<footer>
+  <div class="C">
+    <div class="fi-top">
+      <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+        <a href="https://www.devhub.com.ar/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;text-decoration:none">
+          <img src="/logo-bg.png" alt="DevHub" style="height:36px;width:auto;object-fit:contain"/>
+        </a>
+        <span style="width:1px;height:32px;background:rgba(255,255,255,.06);display:block"></span>
+        <img src="/devhub-turnos.png" alt="DevHub Turnos" class="flogo"/>
+      </div>
+      <div class="flinks">
+        <a href="https://www.devhub.com.ar/" target="_blank" rel="noopener noreferrer">devhub.com.ar</a>
+        <a href="https://wa.me/5493834944727" target="_blank">WhatsApp</a>
+        <a href="mailto:devhubturnos@gmail.com">Email</a>
+      </div>
+    </div>
+    <div class="fi-bot">
+      <p class="fc2">© 2026 DevHub Turnos · Catamarca, Argentina</p>
+      <p class="fc2">Un producto de <a href="https://www.devhub.com.ar/" target="_blank" rel="noopener noreferrer" style="color:var(--bl);text-decoration:none;transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">DevHub</a></p>
+    </div>
+  </div>
+</footer>
 
 <!-- WhatsApp flotante mobile -->
 <a href={WA_URL} target="_blank" class="wa-float" aria-label="WhatsApp">
@@ -416,10 +455,11 @@ const faqs = [
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--b:#2563eb;--bd:#1d4ed8;--bl:#3b82f6;--bdim:rgba(37,99,235,.1);--bk:#06060f;--s1:#0b0b18;--s2:#10101f;--s3:#16162a;--fg:#f0f0f8;--fg2:#8888aa;--fg3:#44445a;--H:'Syne',sans-serif;--B:'DM Sans',sans-serif}
+:root{--b:#2563eb;--bd:#1d4ed8;--bl:#3b82f6;--bdim:rgba(37,99,235,.1);--bk:#06060f;--s1:#0b0b18;--s2:#10101f;--s3:#16162a;--fg:#f0f0f8;--fg2:#f8f8f8;--fg3:#f0f0f0;--H:'Syne',sans-serif;--B:'DM Sans',sans-serif}
 html{scroll-behavior:smooth}
 body{background:var(--bk);color:var(--fg);font-family:var(--B);font-weight:300;line-height:1.65;overflow-x:hidden}
 .C{max-width:1200px;margin:0 auto;padding:0 2rem}
+#planes .C{max-width:1320px}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
@@ -549,8 +589,23 @@ nav.sc{background:rgba(6,6,15,.95);backdrop-filter:blur(18px);border-color:rgba(
 .toggle.on{background:var(--b);border-color:var(--b)}
 .toggle-thumb{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .25s;box-shadow:0 1px 4px rgba(0,0,0,.4)}
 .toggle.on .toggle-thumb{transform:translateX(22px)}
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
-.plan{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem;position:relative;transition:border-color .2s,transform .2s}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,360px));gap:1.5rem;margin-bottom:1.5rem;justify-content:center}
+
+.plan-enterprise{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  align-items:center;
+  background:var(--s1);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:20px;
+  padding:2rem 2.5rem;
+  max-width:1080px;
+  margin:0 auto 1.5rem;
+  transition:border-color .2s,transform .2s;
+}
+.plan-enterprise:hover{border-color:rgba(37,99,235,.3);transform:translateY(-4px)}
+.plan-enterprise .plist{display:grid;grid-template-columns:1fr 1fr;gap:8px 2rem}.plan{background:var(--s1);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:2rem;display:flex;flex-direction:column;gap:1.5rem;position:relative;transition:border-color .2s,transform .2s}
 .plan:hover{border-color:rgba(37,99,235,.3);transform:translateY(-4px)}
 .ppro{border-color:rgba(37,99,235,.35)!important;background:linear-gradient(145deg,#06061a 0%,var(--s1) 60%);box-shadow:0 0 0 1px rgba(37,99,235,.15)}
 .ppop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--b);color:#fff;font-size:.5625rem;font-weight:800;letter-spacing:.15em;padding:4px 14px;border-radius:99px;white-space:nowrap}
@@ -603,8 +658,9 @@ nav.sc{background:rgba(6,6,15,.95);backdrop-filter:blur(18px);border-color:rgba(
 .ctabtns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;margin-top:.5rem}
 
 /* FOOTER */
-footer{padding:2rem 0;border-top:1px solid rgba(255,255,255,.05)}
-.fi{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer{padding:2.5rem 0;border-top:1px solid rgba(255,255,255,.05)}
+.fi-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.fi-bot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
 .flogo{height:28px;width:auto;object-fit:contain}
 .fc2{font-size:.8125rem;color:var(--fg3)}
 .flinks{display:flex;gap:1.5rem}
@@ -625,6 +681,7 @@ footer{padding:2rem 0;border-top:1px solid rgba(255,255,255,.05)}
   .hero-l,.hero-r{max-width:100%}
   .dgrid{grid-template-columns:repeat(2,1fr)}
   .fgrid{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
   .nos-grid{grid-template-columns:1fr;gap:3rem}
   .faq-grid{grid-template-columns:1fr}
 }
